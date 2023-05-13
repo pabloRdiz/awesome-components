@@ -1,12 +1,16 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { NAvigator } from './src/navigator/Navigator';
+import React, { ReactNode } from 'react';
+import { Navigator } from './src/navigator/Navigator';
+import { ThemeProvider } from './src/contexts/themeContext/ThemeContext';
+
+const AppState = ({ children }: { children: ReactNode }) => {
+  return <ThemeProvider>{children}</ThemeProvider>;
+};
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <NAvigator />
-    </NavigationContainer>
+    <AppState>
+      <Navigator />
+    </AppState>
   );
 };
 

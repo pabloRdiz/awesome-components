@@ -10,10 +10,10 @@ export const HomeScreen = () => {
     <View style={{ ...styles.container, ...appStyles.globalMargin }}>
       <FlatList
         data={menuItems}
-        ListHeaderComponent={<HeaderTitle title="Menu Options" />}
-        keyExtractor={item => item.name}
-        renderItem={({ item }) => <FlatListMenuItem item={item} />}
         ItemSeparatorComponent={() => <ItemSeparator />}
+        keyExtractor={item => item.name}
+        ListHeaderComponent={<HeaderTitle title="Menu Options" />}
+        renderItem={({ item }) => <FlatListMenuItem item={item} />}
       />
     </View>
   );

@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { appStyles } from '../theme/appTheme';
+import { useContext } from 'react';
+import { ThemeContext } from '../contexts/themeContext/ThemeContext';
 
 interface Props {
   title: string;
@@ -9,11 +11,14 @@ interface Props {
 export const HeaderTitle = (props: Props) => {
   const { title } = props;
   const { top } = useSafeAreaInsets();
-  const styles = createStyles(top);
+  const { theme } = useContext(ThemeContext);
 
+  const styles = createStyles(top);
   return (
     <View style={styles.header}>
-      <Text style={appStyles.title}>{title}</Text>
+      <Text style={{ ...appStyles.title, color: theme.colors.text }}>
+        {title}
+      </Text>
     </View>
   );
 };

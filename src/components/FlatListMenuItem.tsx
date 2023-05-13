@@ -1,5 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ThemeContext } from '../contexts/themeContext/ThemeContext';
+import { useContext } from 'react';
 
 export interface MenuItem {
   name: string;
@@ -14,6 +16,8 @@ interface Props {
 export const FlatListMenuItem = (props: Props) => {
   const { item } = props;
   const navigation = useNavigation();
+  const { theme } = useContext(ThemeContext);
+  const styles = createStyles(theme.colors.text);
 
   return (
     <TouchableOpacity
@@ -33,16 +37,17 @@ export const FlatListMenuItem = (props: Props) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginHorizontal: 20,
-    textAlign: 'center',
-  },
-  itemText: {
-    fontSize: 16,
-    fontWeight: '800',
-    color: 'tomato',
-  },
-});
+const createStyles = (color: string) =>
+  StyleSheet.create({
+    container: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginHorizontal: 20,
+      textAlign: 'center',
+    },
+    itemText: {
+      fontSize: 16,
+      fontWeight: '600',
+      color: color,
+    },
+  });
